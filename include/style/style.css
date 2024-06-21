@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    display: block;
+    flex: 1 0 auto;
+}
+.nav-item{
+    margin-left: auto;
+}
+
+.barnav{
+    display: flex;
+}
+
+.obligatoire {
+    color: red;
+}

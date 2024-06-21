@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteBase /client/
+
+RewriteCond %{REQUEST_URI} !(/$|\.)
+RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
+
+RewriteRule ^([a-zA-Z]+)/$ index.php?page=$1
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/$ index.php?page=$1&id=$2
