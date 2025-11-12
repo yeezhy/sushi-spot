@@ -1,0 +1,38 @@
+services:
+  web:
+    build: .
+    container_name: cms-web
+    ports:
+      - "8000:80"               # ton site sera sur http://localhost:8000
+    volumes:
+      - ./:/var/www/html        # monte ton code dans le conteneur
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.11        # ou mysql:8 si tu préfères
+    container_name: cms-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: b2-gp93
+      MYSQL_USER: b2-gp93
+      MYSQL_PASSWORD: zJ6cV3bG5nY7
+    ports:
+      - "3306:3306"             # utile si tu veux te connecter depuis l'hôte
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: pma
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
